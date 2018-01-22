@@ -1,0 +1,8 @@
+#!/bin/sh
+## EPITECH PROJECT, 2017
+## test
+## File description:
+## test
+##
+
+LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so ls -lA
