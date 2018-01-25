@@ -7,7 +7,7 @@
 
 #include "malloc.h"
 
-int		increase_heap(size_t size)
+/*int		increase_heap(size_t size)
 {
 	size_t	size_to_add = PAGE_SIZE;
 
@@ -28,20 +28,20 @@ int		increase_heap(size_t size)
 		head->mem_left += size_to_add;
 	}
 	return (0);
-}
+} */
 
-t_info		best_fit(t_info start, size_t size)
+info_t		*best_fit(info_t *start, size_t size)
 {
-        t_info	best = NULL;
-        t_info	tmp = start;
+        info_t	*best = NULL;
+        info_t	*tmp = start;
 
-        while (tmp){
-                while (tmp && (!tmp->free || tmp->size <= size)){
+        while (tmp) {
+                while (tmp && (!tmp->free || tmp->size <= size)) {
                         if (tmp->free && (size - INFO == tmp->size))
                                 return (tmp);
                         tmp = tmp->next;
                 }
-                if (tmp){
+                if (tmp) {
                         if (!best || ((tmp->size - size) < (best->size - size)))
                                 best = tmp;
                         tmp = tmp->next;
@@ -50,9 +50,9 @@ t_info		best_fit(t_info start, size_t size)
         return (best);
 }
 
-int		split_block(t_info cur, size_t new_size)
+/*int		split_block(info_t *cur, size_t new_size)
 {
-	t_info	new;
+	info_t *new;
 
 	if (!cur)
 		return (1);
@@ -60,7 +60,7 @@ int		split_block(t_info cur, size_t new_size)
 		return (0);
 	if (new_size > cur->size || cur->size - new_size <= INFO)
 		return (1);
-	new = (t_info)((char *)(cur + 1) + new_size);
+	new = (info_t *)((char *)(cur + 1) + new_size);
 	new->free = 1;
 	new->size = cur->size - new_size - INFO;
 	cur->size = new_size;
@@ -71,21 +71,20 @@ int		split_block(t_info cur, size_t new_size)
 void		*malloc(size_t size)
 {
 	size_t	s = ALIGN(size);
-	t_info	best;
+	info_t *best;
 
-//	write(1, "Malloc\n", 7);
 	if (increase_heap(s + INFO))
 		return (NULL);
 	/* if (head->last_freed && */
 	/*     (head->last_freed->size == s || head->last_freed->size >= s + INFO)) */
 	/* 	best = head->last_freed; */
-	/* else */
+	/* else
 	best = best_fit(head->start, s + INFO);
 	if (!best){
 		if (!head->end)
-			best = (t_info)(head + 1);
+			best = (info_t *)(head + 1);
 		else
-			best = (t_info)((char *)(head->end + 1) + head->end->size);
+			best = (info_t *)((char *)(head->end + 1) + head->end->size);
 		best->free = 0;
 		best->size = s;
 		add_after(head->end, best);
@@ -96,4 +95,4 @@ void		*malloc(size_t size)
 		split_block(best, s);
 	}
 	return ((void *)(best + 1));
-}
+} */

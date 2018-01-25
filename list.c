@@ -13,7 +13,7 @@ void		remove_node(info_t *cur)
 		if (cur == head->start && cur == head->end) {
 			head->start = NULL;
 			head->end = NULL;
-		} else if (cur == head->start){
+		} else if (cur == head->start) {
 			head->start->next->prev = NULL;
 			head->start = head->start->next;
 		} else if (cur == head->end) {
@@ -34,8 +34,9 @@ void		add_after(info_t *cur, info_t *new)
 	if (!cur) {
 		head->start = new;
 		head->end = new;
-	} else {
-		if (cur == head->end){
+	}
+	else {
+		if (cur == head->end) {
 			new->prev = head->end;
 			head->end->next = new;
 			head->end = new;

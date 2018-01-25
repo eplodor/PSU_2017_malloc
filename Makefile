@@ -21,11 +21,13 @@ SRCS		= list.c \
 SRCS2		= tests/prep_structs_tests.c \
 		  tests/tests-add_after.c \
 		  tests/tests-delete_elem_list.c \
+		  tests/tests-best_fit.c \
+		  malloc.c \
 		  list.c
 
 OBJS2		= $(SRCS2:.c=.o)
 
-CFLAGS		= -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
+CFLAGS		= -g -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
 
 all:		$(NAME)
 
@@ -39,10 +41,11 @@ tests_run:	$(OBJS2)
 clean:
 		@$(RM) $(OBJS)
 		@$(RM) $(OBJS2)
+		@$(RM) *.gcno
+		@$(RM) *.gcda
 
 fclean:		clean
 		@$(RM) $(NAME)
 		@$(RM) $(NAME2)
-		@$(RM) *.gc*
 
 re:		fclean all tests_run

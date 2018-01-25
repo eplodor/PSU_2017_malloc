@@ -33,14 +33,14 @@ void		free(void *ptr)
 	t_info	start;
 
 //	write(1, "Free\n", 5);
-	if (!is_valid(ptr)){
+	if (!is_valid(ptr) && ((size_t)ptr % 16 == 0)){
 //		write(1, "Free\n", 5);
 		start = get_info(ptr);
 		start->free = 1;
-		if (start->prev && start->prev->free)
-			start = fuse(start->prev);
-		if (start->next && start->next->free)
-			start = fuse(start);
+		/* if (start->prev && start->prev->free) */
+		/* 	start = fuse(start->prev); */
+		/* if (start->next && start->next->free) */
+		/* 	start = fuse(start); */
 		head->last_freed = start;
 	}
 	return ;

@@ -10,7 +10,7 @@
 Test(add_after, empty_linked_list)
 {
 	head = init_struct_head(NULL, NULL);
-	info_t	*i = init_struct_info(56, 1);
+	info_t	*i = init_struct_info(56, FREE);
 
 	add_after(head->start, i);
 	cr_expect_eq(head->start, i);
@@ -21,8 +21,8 @@ Test(add_after, empty_linked_list)
 
 Test(add_after, one_elem_linked_list)
 {
-	info_t	*i = init_struct_info(59, 1);
-	info_t	*new = init_struct_info(78, 1);
+	info_t	*i = init_struct_info(59, FREE);
+	info_t	*new = init_struct_info(78, FREE);
 	head = init_struct_head(i, i);
 
 	add_after(head->start, new);
@@ -40,11 +40,11 @@ Test(add_after, add_elem_end)
 	info_t	*j;
 	info_t	*new;
 
-	i = init_struct_info(78, 1);
-	j = init_struct_info(2, 1);
+	i = init_struct_info(78, FREE);
+	j = init_struct_info(2, FREE);
 	set_struct_info_elem(i, NULL, j);
 	set_struct_info_elem(j, j, NULL);
-	new = init_struct_info(56, 1);
+	new = init_struct_info(56, FREE);
 	head = init_struct_head(i, j);
 	add_after(head->end, new);
 	cr_expect_eq(head->end, new);
@@ -63,11 +63,11 @@ Test(add_after, default_case)
 	info_t	*j;
 	info_t	*new;
 
-	i = init_struct_info(78, 1);
-	j = init_struct_info(2, 1);
+	i = init_struct_info(78, FREE);
+	j = init_struct_info(2, FREE);
 	set_struct_info_elem(i, NULL, j);
 	set_struct_info_elem(j, j, NULL);
-	new = init_struct_info(56, 1);
+	new = init_struct_info(56, FREE);
 	head = init_struct_head(i, j);
 	add_after(i, new);
 	cr_expect_eq(i->next, new);
