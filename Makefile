@@ -18,10 +18,10 @@ SRCS		= list.c \
 		  free.c \
 		  realloc.c
 
-SRCS2		= tests/tests-add_after.c \
-		  tests/tests-delete_elem_list.c
-
-OBJS		= $(SRCS:.c=.o)
+SRCS2		= tests/prep_structs_tests.c \
+		  tests/tests-add_after.c \
+		  tests/tests-delete_elem_list.c \
+		  list.c
 
 OBJS2		= $(SRCS2:.c=.o)
 
@@ -33,7 +33,8 @@ $(NAME):	$(OBJS)
 		@$(CC) -shared -fPIC $(SRCS) -o $(NAME)
 
 tests_run:	$(OBJS2)
-		@$(CC) $(SRCS2) -o $(NAME2) -lcriterion
+		@$(CC) $(SRCS2) -o $(NAME2) --coverage -lcriterion
+		./tests_malloc
 
 clean:
 		@$(RM) $(OBJS)
@@ -42,5 +43,6 @@ clean:
 fclean:		clean
 		@$(RM) $(NAME)
 		@$(RM) $(NAME2)
+		@$(RM) *.gc*
 
 re:		fclean all tests_run

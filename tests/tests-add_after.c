@@ -9,29 +9,29 @@
 
 Test(add_after, empty_linked_list)
 {
-	head_t	*h = init_struct_head(NULL, NULL);
-	info_t	*i = init_struct_info(NULL, NULL, 56, 1);
+	head = init_struct_head(NULL, NULL);
+	info_t	*i = init_struct_info(56, 1);
 
-	add_afer(h->start, i);
-	cr_assert_eq(h->start, i);
-	cr_assert_eq(h->end, i);
+	add_after(head->start, i);
+	cr_expect_eq(head->start, i);
+	cr_expect_eq(head->end, i);
 	free(i);
-	free(h);
+	free(head);
 }
 
 Test(add_after, one_elem_linked_list)
 {
-	info_t	*i = init_struct_info(NULL, NULL, 59, 1);
-	info_t	*j = init_struct_info(NULL, NULL, 78, 1);
-	head_t	*h = init_struct_head(i, i);
+	info_t	*i = init_struct_info(59, 1);
+	info_t	*new = init_struct_info(78, 1);
+	head = init_struct_head(i, i);
 
-	add_after(h->start, j);
-	cr_assert_eq(h->end, j);
-	cr_assert_eq(h->start->next, h->end);
-	cr_assert_eq(h->end->prev, h->start);
+	add_after(head->start, new);
+	cr_expect_eq(head->end, new);
+	cr_expect_eq(head->start->next, head->end);
+	cr_expect_eq(head->end->prev, head->start);
 	free(i);
-	free(j);
-	free(h);
+	free(new);
+	free(head);
 }
 
 Test(add_after, add_elem_end)
@@ -39,21 +39,22 @@ Test(add_after, add_elem_end)
 	info_t	*i;
 	info_t	*j;
 	info_t	*new;
-	head_t	*h;
 
-	i = init_struct_info(NULL, j, 78, 1);
-	j = init_struct_info(i, NULL, 2, 1);
-	new = init_struct_info(NULL, NULL, 56, 1);
-	h = init_struct_head(i, j);
-	add_after(h->end, new);
-	cr_assert_eq(h->end, new);
-	cr_assert_eq(j->next, new);
-	cr_assert_eq(new->next, NULL);
-	cr_assert_eq(h->end->prev, j);
+	i = init_struct_info(78, 1);
+	j = init_struct_info(2, 1);
+	set_struct_info_elem(i, NULL, j);
+	set_struct_info_elem(j, j, NULL);
+	new = init_struct_info(56, 1);
+	head = init_struct_head(i, j);
+	add_after(head->end, new);
+	cr_expect_eq(head->end, new);
+	cr_expect_eq(j->next, new);
+	cr_expect_eq(new->next, NULL);
+	cr_expect_eq(head->end->prev, j);
 	free(i);
 	free(new);
 	free(j);
-	free(h);
+	free(head);
 }
 
 Test(add_after, default_case)
@@ -61,19 +62,20 @@ Test(add_after, default_case)
 	info_t	*i;
 	info_t	*j;
 	info_t	*new;
-	head_t	*h;
 
-	i = init_struct_info(NULL, j, 78, 1);
-	j = init_struct_info(i, NULL, 2, 1);
-	new = init_struct_info(NULL, NULL, 56, 1);
-	h = init_struct_head(i, j);
+	i = init_struct_info(78, 1);
+	j = init_struct_info(2, 1);
+	set_struct_info_elem(i, NULL, j);
+	set_struct_info_elem(j, j, NULL);
+	new = init_struct_info(56, 1);
+	head = init_struct_head(i, j);
 	add_after(i, new);
-	cr_assert_eq(i->next, new);
-	cr_assert_eq(new->prev, i);
-	cr_assert_eq(new->next, h->end);
-	cr_assert_eq(h->end->prev, new);
+	cr_expect_eq(i->next, new);
+	cr_expect_eq(new->prev, i);
+	cr_expect_eq(new->next, head->end);
+	cr_expect_eq(head->end->prev, new);
 	free(i);
 	free(new);
 	free(j);
-	free(h);
+	free(head);
 }

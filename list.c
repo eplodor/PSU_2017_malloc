@@ -7,7 +7,7 @@
 
 #include "malloc.h"
 
-info_t		*remove_node(info_t *cur)
+void		remove_node(info_t *cur)
 {
 	if (cur) {
 		if (cur == head->start && cur == head->end) {
@@ -26,7 +26,7 @@ info_t		*remove_node(info_t *cur)
 	}
 }
 
-info_t		*add_after(t_info *cur, t_info *new)
+void		add_after(info_t *cur, info_t *new)
 {
 	new->next = NULL;
 	new->prev = NULL;
