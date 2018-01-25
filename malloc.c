@@ -50,25 +50,25 @@ info_t		*best_fit(info_t *start, size_t size)
         return (best);
 }
 
-/*int		split_block(info_t *cur, size_t new_size)
+int		split_block(info_t *cur, size_t new_size)
 {
-	info_t *new;
+	info_t	*new;
 
 	if (!cur)
 		return (1);
 	if (new_size == cur->size)
 		return (0);
-	if (new_size > cur->size || cur->size - new_size <= INFO)
+	if ((new_size > cur->size) || ((cur->size - new_size) <= INFO))
 		return (1);
 	new = (info_t *)((char *)(cur + 1) + new_size);
-	new->free = 1;
+	new->free = FREE;
 	new->size = cur->size - new_size - INFO;
 	cur->size = new_size;
 	add_after(cur, new);
 	return (0);
 }
 
-void		*malloc(size_t size)
+/*void		*malloc(size_t size)
 {
 	size_t	s = ALIGN(size);
 	info_t *best;

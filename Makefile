@@ -22,6 +22,7 @@ SRCS2		= tests/prep_structs_tests.c \
 		  tests/tests-add_after.c \
 		  tests/tests-delete_elem_list.c \
 		  tests/tests-best_fit.c \
+		  tests/tests-split_block.c \
 		  malloc.c \
 		  list.c
 

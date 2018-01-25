@@ -55,5 +55,5 @@ void            set_struct_info_elem(info_t *, info_t *, info_t *);
 head_t          *init_struct_head(info_t *, info_t *);
 
 info_t		*best_fit(info_t *, size_t);
-
+int		split_block(info_t *, size_t);
 #endif
