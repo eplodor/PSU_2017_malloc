@@ -7,13 +7,13 @@
 
 #include "malloc.h"
 
-/*int		increase_heap(size_t size)
+int		increase_heap(size_t size)
 {
 	size_t	size_to_add = PAGE_SIZE;
 
 	while (size_to_add < size)
 		size_to_add += PAGE_SIZE;
-	if (!head){
+	if (!head) {
 		head = sbrk(size_to_add);
 		if (head == FAIL)
 			return (1);
@@ -21,14 +21,13 @@
 		head->end = NULL;
 		head->last_freed = NULL;
 		head->mem_left = size_to_add - INFO;
-	}
-	else if (head->mem_left < size){
+	} else if (head->mem_left < size) {
 		if (sbrk(size_to_add) == FAIL)
 			return (1);
 		head->mem_left += size_to_add;
 	}
 	return (0);
-} */
+}
 
 info_t		*best_fit(info_t *start, size_t size)
 {
@@ -54,18 +53,19 @@ int		split_block(info_t *cur, size_t new_size)
 {
 	info_t	*new;
 
-	if (!cur)
-		return (1);
-	if (new_size == cur->size)
+	if (cur) {
+		if (new_size == cur->size)
+			return (0);
+		if ((new_size > cur->size) || ((cur->size - new_size) <= INFO))
+			return (1);
+		new = (info_t *)((char *)(cur + 1) + new_size);
+		new->free = FREE;
+		new->size = cur->size - new_size - INFO;
+		cur->size = new_size;
+		add_after(cur, new);
 		return (0);
-	if ((new_size > cur->size) || ((cur->size - new_size) <= INFO))
-		return (1);
-	new = (info_t *)((char *)(cur + 1) + new_size);
-	new->free = FREE;
-	new->size = cur->size - new_size - INFO;
-	cur->size = new_size;
-	add_after(cur, new);
-	return (0);
+	}
+	return (1);
 }
 
 /*void		*malloc(size_t size)
