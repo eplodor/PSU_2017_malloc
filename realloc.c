@@ -56,7 +56,7 @@ void            *realloc(void *oldptr, size_t size)
 	newptr = malloc(size);
 	if (!newptr)
 		return (NULL);
-	memcpy(newptr, oldptr, size);
+	newptr = memcpy(newptr, oldptr, size);
 	free(oldptr);
 	return (newptr);
 }
