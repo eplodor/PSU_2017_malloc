@@ -57,4 +57,10 @@ head_t          *init_struct_head(info_t *, info_t *);
 int		increase_heap(size_t);
 info_t		*best_fit(info_t *, size_t);
 int		split_block(info_t *, size_t);
+
+int		is_valid(void *);
+void		*get_current_break();
+info_t		*get_info(void *);
+info_t		*fuse(info_t *);
+
 #endif

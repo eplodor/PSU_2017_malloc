@@ -68,31 +68,37 @@ int		split_block(info_t *cur, size_t new_size)
 	return (1);
 }
 
-/*void		*malloc(size_t size)
+info_t		*add_block_end(info_t *best, size_t size)
+{
+	if (!head->end)
+		best = (info_t *)(head + 1);
+	else
+		best = (info_t *)((char *)(head->end + 1) + head->end->size);
+	best->free = USED;
+	best->size = size;
+	add_after(head->end, best);
+	head->mem_left -= (size + INFO);
+	return (best);
+}
+
+void		*malloc(size_t size)
 {
 	size_t	s = ALIGN(size);
-	info_t *best;
+	info_t	*best;
 
-	if (increase_heap(s + INFO))
-		return (NULL);
-	/* if (head->last_freed && */
-	/*     (head->last_freed->size == s || head->last_freed->size >= s + INFO)) */
-	/* 	best = head->last_freed; */
-	/* else
-	best = best_fit(head->start, s + INFO);
-	if (!best){
-		if (!head->end)
-			best = (info_t *)(head + 1);
-		else
-			best = (info_t *)((char *)(head->end + 1) + head->end->size);
-		best->free = 0;
-		best->size = s;
-		add_after(head->end, best);
-		head->mem_left -= (s + INFO);
+	if (!increase_heap(s + INFO)) {
+		/* if (head->last_freed && */
+		/*     (head->last_freed->size == s || head->last_freed->size >= s + INFO)) */
+		/* 	best = head->last_freed; */
+		/* else */
+		best = best_fit(head->start, s + INFO);
+		if (!best)
+			best = add_block_end(best, s);
+		else {
+			best->free = USED;
+			split_block(best, s);
+		}
+		return ((void *)(best + 1));
 	}
-	else{
-		best->free = 0;
-		split_block(best, s);
-	}
-	return ((void *)(best + 1));
-} */
+	return (NULL);
+}
