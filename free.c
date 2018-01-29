@@ -15,7 +15,7 @@ void		*get_current_break()
 
 int		is_valid(void *ptr)
 {
-	return ((head->start && ptr < (void *)head->start) ||
+	return ((head->start && ptr < (void *)(head->start + 1)) ||
 		(head->end && ptr > get_current_break()));
 }
 

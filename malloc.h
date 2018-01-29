@@ -25,6 +25,7 @@
 
 # define PAGE_SIZE sysconf(_SC_PAGESIZE)
 # define INFO sizeof(struct info_s)
+# define HEAD sizeof(struct head_s)
 # define FAIL (void *)-1
 # define USED 0
 # define FREE 1

@@ -20,7 +20,7 @@ int		increase_heap(size_t size)
 		head->start = NULL;
 		head->end = NULL;
 		head->last_freed = NULL;
-		head->mem_left = size_to_add - INFO;
+		head->mem_left = size_to_add - HEAD;
 	} else if (head->mem_left < size) {
 		if (sbrk(size_to_add) == FAIL)
 			return (1);
