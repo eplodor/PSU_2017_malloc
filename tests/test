@@ -5,7 +5,13 @@
 ## test
 ##
 
-LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so google-chrome-stable
+LD_PRELOAD=./libmy_malloc.so htop
+LD_PRELOAD=./libmy_malloc.so google-chrome-stable --fullscreen --incognito
+LD_PRELOAD=./libmy_malloc.so emacs
+LD_PRELOAD=./libmy_malloc.so vi
+LD_PRELOAD=./libmy_malloc.so firefox
+#LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so htop
+#LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so google-chrome-stable
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so firefox
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so vi
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so ls -lA

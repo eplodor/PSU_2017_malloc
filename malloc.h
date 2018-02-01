@@ -42,7 +42,6 @@ typedef struct		head_s
 {
 	struct info_s	*start;
 	struct info_s	*end;
-	struct info_s	*last_freed;
 	size_t		mem_left;
 }			head_t;
 

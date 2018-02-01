@@ -45,6 +45,5 @@ void		free(void *ptr)
 			start = fuse(start->prev);
 		if (start->next && start->next->free)
 			start = fuse(start);
-		head->last_freed = start;
 	}
 }

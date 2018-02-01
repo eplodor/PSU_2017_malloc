@@ -28,14 +28,6 @@ void		show_alloc_mem(void)
 
 void            *realloc(void *oldptr, size_t size)
 {
-	/* Oldptr NULL ou free et size != 0, malloc
-	   Oldptr NULL ou free et size == 0, return NULL
-	   Oldptr non-NULL et free et size != 0, malloc
-	   Oldptr non-NUll et free et size == 0, return NULL
-	   Oldptr non-NULL et alloué et size == 0, free
-	   Oldptr non-NULL et alloué et size > oldptr->size, malloc newptr, memcpy ancien vers nouveau puis free ancien
-	   Oldptr non-NULL et alloué et size < oldptr->size, split_block. Si échoue et que suivant free et que somme des tailles a assez de place, fuse. Sinon, effectue cas du dessus
-	*/
 	info_t	*info;
 	void	*newptr;
 	size = ALIGN(size);

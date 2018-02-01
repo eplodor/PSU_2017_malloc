@@ -17,9 +17,7 @@ int		increase_heap(size_t size)
 		head = sbrk(size_to_add);
 		if (head == FAIL)
 			return (1);
-		head->start = NULL;
-		head->end = NULL;
-		head->last_freed = NULL;
+		memset(head, 0, HEAD);
 		head->mem_left = size_to_add - HEAD;
 	} else if (head->mem_left < size) {
 		if (sbrk(size_to_add) == FAIL)
@@ -84,13 +82,9 @@ info_t		*add_block_end(info_t *best, size_t size)
 void		*malloc(size_t size)
 {
 	size_t	s = ALIGN(size);
-	info_t	*best;
+	info_t	*best = NULL;
 
 	if (!increase_heap(s + INFO)) {
-		/* if (head->last_freed && */
-		/*     (head->last_freed->size == s || head->last_freed->size >= s + INFO)) */
-		/* 	best = head->last_freed; */
-		/* else */
 		best = best_fit(head->start, s + INFO);
 		if (!best)
 			best = add_block_end(best, s);

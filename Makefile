@@ -16,7 +16,8 @@ NAME2		= tests_malloc
 SRCS		= list.c \
 		  malloc.c \
 		  free.c \
-		  realloc.c
+		  realloc.c \
+		  calloc.c
 
 
 SRCS2		= tests/prep_structs_tests.c \
@@ -25,14 +26,17 @@ SRCS2		= tests/prep_structs_tests.c \
 		  tests/tests-best_fit.c \
 		  tests/tests-split_block.c \
 		  tests/tests-increase_heap.c \
+		  list.c \
 		  malloc.c \
-		  list.c
+		  free.c \
+		  realloc.c \
+	          calloc.c
 
 OBJS		= $(SRCS:.c=.o)
 
 OBJS2		= $(SRCS2:.c=.o)
 
-CFLAGS		= -g -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
+CFLAGS		= -g3 -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
 
 all:		$(NAME)
 
