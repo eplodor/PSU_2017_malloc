@@ -36,7 +36,7 @@ OBJS		= $(SRCS:.c=.o)
 
 OBJS2		= $(SRCS2:.c=.o)
 
-CFLAGS		= -g3 -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
+CFLAGS		= -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
 
 all:		$(NAME)
 
