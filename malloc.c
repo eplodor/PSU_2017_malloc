@@ -7,9 +7,14 @@
 
 #include "malloc.h"
 
-int		increase_heap(size_t size)
+const int		USED = 0;
+const void		*FAIL = (void *)-1;
+const size_t		HEAD = sizeof(struct head_s);
+const size_t		INFO = sizeof(struct info_s);
+
+int			increase_heap(size_t size)
 {
-	size_t	size_to_add = PAGE_SIZE;
+	size_t		size_to_add = PAGE_SIZE;
 
 	while (size_to_add < size)
 		size_to_add += PAGE_SIZE;
@@ -27,10 +32,10 @@ int		increase_heap(size_t size)
 	return (0);
 }
 
-info_t		*best_fit(info_t *start, size_t size)
+info_t			*best_fit(info_t *start, size_t size)
 {
-        info_t	*best = NULL;
-        info_t	*tmp = start;
+        info_t		*best = NULL;
+        info_t		*tmp = start;
 
         while (tmp) {
                 while (tmp && (!tmp->free || tmp->size <= size)) {
@@ -47,9 +52,9 @@ info_t		*best_fit(info_t *start, size_t size)
         return (best);
 }
 
-int		split_block(info_t *cur, size_t new_size)
+int			split_block(info_t *cur, size_t new_size)
 {
-	info_t	*new;
+	info_t		*new;
 
 	if (cur) {
 		if (new_size == cur->size)
@@ -66,7 +71,7 @@ int		split_block(info_t *cur, size_t new_size)
 	return (1);
 }
 
-info_t		*add_block_end(info_t *best, size_t size)
+info_t			*add_block_end(info_t *best, size_t size)
 {
 	if (!head->end)
 		best = (info_t *)(head + 1);
@@ -79,11 +84,13 @@ info_t		*add_block_end(info_t *best, size_t size)
 	return (best);
 }
 
-void		*malloc(size_t size)
+void			*malloc(size_t size)
 {
-	size_t	s = ALIGN(size);
-	info_t	*best = NULL;
+	const size_t	s = ALIGN(size);
+	info_t		*best = NULL;
 
+	if (size <= 0)
+		return (NULL);
 	if (!increase_heap(s + INFO)) {
 		best = best_fit(head->start, s + INFO);
 		if (!best)

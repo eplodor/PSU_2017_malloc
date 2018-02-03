@@ -5,7 +5,7 @@
 ## test
 ##
 
-LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so xflock4
+#LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so xflock4
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so htop
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so google-chrome-stable
 #LD_PRELOAD=./libmy_malloc.so valgrind --soname-synonyms=somalloc=libmy_malloc.so firefox

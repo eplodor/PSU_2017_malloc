@@ -7,6 +7,7 @@
 
 #include "malloc.h"
 
+const int	FREE = 1;
 
 void		*get_current_break()
 {

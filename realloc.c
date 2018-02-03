@@ -14,15 +14,16 @@ void		show_alloc_mem(void)
 	char	*tmp;
 
 	i = head->start;
-	if (!head->end) {
+	if (!head->end)
 		printf("break : %p\n", sbrk(0));
-		return ;
-	}
-	printf("break : %p\n", get_current_break());
-	while (i) {
-		tmp = (char *)(i + 1) + i->size;
-		printf("%p - %p : %ld bytes\n", (void *)(i + 1), tmp, i->size);
-		i = i->next;
+	else {
+		printf("break : %p\n", get_current_break());
+		while (i) {
+			tmp = (char *)(i + 1) + i->size;
+			printf("%p - %p : %ld bytes\n", (void *)(i + 1),
+			       tmp, i->size);
+			i = i->next;
+		}
 	}
 }
 
@@ -34,11 +35,8 @@ void            *realloc(void *oldptr, size_t size)
 
 	if (oldptr)
 		info = get_info(oldptr);
-	if (!oldptr || info->free) {
-		if (size)
-			return (malloc(size));
-		return (NULL);
-	}
+	if (!oldptr || info->free)
+		return (malloc(size));
 	if (!size) {
 		free(oldptr);
 		return (NULL);

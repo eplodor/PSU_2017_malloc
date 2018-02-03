@@ -7,10 +7,10 @@
 
 #include "malloc.h"
 
-void		*calloc(size_t nmemb, size_t size)
+void			*calloc(size_t nmemb, size_t size)
 {
-	size_t	s = nmemb * size;
-	void	*ptr = malloc(s);
+	const size_t	s = nmemb * size;
+	void		*ptr = malloc(s);
 
 	if (ptr)
 		memset(ptr, 0, s);
