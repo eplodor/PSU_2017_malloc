@@ -30,12 +30,10 @@ void		add_after(info_t *cur, info_t *new)
 {
 	new->next = NULL;
 	new->prev = NULL;
-
 	if (!cur) {
 		head->start = new;
 		head->end = new;
-	}
-	else {
+	} else {
 		if (cur == head->end) {
 			new->prev = head->end;
 			head->end->next = new;

@@ -20,7 +20,6 @@ int		is_valid(void *ptr)
 		(head->end && ptr > get_current_break()));
 }
 
-
 info_t		*get_info(void *ptr)
 {
 	return ((info_t *)ptr - 1);

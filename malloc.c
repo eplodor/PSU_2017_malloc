@@ -34,22 +34,23 @@ int			increase_heap(size_t size)
 
 info_t			*best_fit(info_t *start, size_t size)
 {
-        info_t		*best = NULL;
-        info_t		*tmp = start;
+	info_t		*best = NULL;
+	info_t		*tmp = start;
 
-        while (tmp) {
-                while (tmp && (!tmp->free || tmp->size <= size)) {
-                        if (tmp->free && (size - INFO == tmp->size))
-                                return (tmp);
-                        tmp = tmp->next;
+	while (tmp) {
+		while (tmp && (!tmp->free || tmp->size <= size)) {
+			if (tmp->free && (size - INFO == tmp->size))
+				return (tmp);
+			tmp = tmp->next;
                 }
-                if (tmp) {
-                        if (!best || ((tmp->size - size) < (best->size - size)))
-                                best = tmp;
-                        tmp = tmp->next;
-                }
-        }
-        return (best);
+		if (tmp) {
+			if (!best ||
+			    ((tmp->size - size) < (best->size - size)))
+				best = tmp;
+			tmp = tmp->next;
+		}
+	}
+	return (best);
 }
 
 int			split_block(info_t *cur, size_t new_size)
