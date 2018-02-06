@@ -17,7 +17,7 @@
 	#include <inttypes.h>
 	#include <limits.h>
 
-	#ifndef __X86_64__
+	#if __X86_64__
 	#define ALIGN(x) (((((x) - 1) >> 4) << 4) + 16)
 	#else
 	#define ALIGN(x) (((((x) - 1) >> 3) << 3) + 8)
