@@ -84,9 +84,9 @@ Test(split_block, not_enough_room3)
 
 /* Enough_room non testable du à la configuration actuelle des listes chainées avec sbrk
 ** Cependant, fonction verifiée et fonctionnelle avec un malloc dans la fonction split_block
-
+**
 ** Test(split_block, enough_room)
-**{
+** {
 **	info_t	*a = init_struct_info(89, FREE);
 **	info_t	*b = init_struct_info(34, FREE);
 **	set_struct_info_elem(a, NULL, b);
@@ -102,5 +102,5 @@ Test(split_block, not_enough_room3)
 **	cr_expect_eq(a->next->size, 89 - 2 - INFO);
 **	free(a);
 **	free(b);
-**	free(head);
-} */
+**	free(head); }
+*/

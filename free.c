@@ -9,7 +9,7 @@
 
 const int	FREE = 1;
 
-void		*get_current_break()
+void		*get_current_break(void)
 {
 	return (((char *)(head->end + 1)) + head->end->size);
 }
