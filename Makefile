@@ -13,11 +13,11 @@ NAME		= libmy_malloc.so
 
 NAME2		= tests_malloc
 
-SRCS		= list.c \
-		  malloc.c \
-		  free.c \
-		  realloc.c \
-		  calloc.c
+SRCS		= src/list.c \
+		  src/malloc.c \
+		  src/free.c \
+		  src/realloc.c \
+		  src/calloc.c
 
 
 SRCS2		= tests/prep_structs_tests.c \
@@ -36,12 +36,13 @@ OBJS		= $(SRCS:.c=.o)
 
 OBJS2		= $(SRCS2:.c=.o)
 
-CFLAGS		= -O3 -W -Wall -Wextra -Wpadded -ansi -pedantic --std=gnu99
+CFLAGS		= -W -Wall -Wextra -Iinclude -shared -fPIC
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-		@$(CC) -g -shared -fPIC $(SRCS) -o $(NAME)
+		$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+
 
 tests_run:	$(OBJS2)
 		@$(CC) $(SRCS2) -o $(NAME2) --coverage -lcriterion
@@ -52,6 +53,7 @@ clean:
 		@$(RM) $(OBJS2)
 		@$(RM) *.gcno
 		@$(RM) *.gcda
+		@$(RM) *.gcov
 
 fclean:		clean
 		@$(RM) $(NAME)

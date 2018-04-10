@@ -44,9 +44,9 @@ void            *realloc(void *oldptr, size_t size)
 	if (!split_block(info, size))
 		return (oldptr);
 	newptr = malloc(size);
-	if (!newptr)
-		return (NULL);
-	newptr = memcpy(newptr, oldptr, size);
-	free(oldptr);
+	if (newptr) {
+		newptr = memcpy(newptr, oldptr, size);
+		free(oldptr);
+	}
 	return (newptr);
 }

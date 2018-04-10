@@ -90,9 +90,7 @@ void			*malloc(size_t size)
 	const size_t	s = ALIGN(size);
 	info_t		*best = NULL;
 
-	if (size <= 0)
-		return (NULL);
-	if (!increase_heap(s + INFO)) {
+	if (size > 0 && !increase_heap(s + INFO)) {
 		best = best_fit(head->start, s + INFO);
 		if (!best)
 			best = add_block_end(best, s);

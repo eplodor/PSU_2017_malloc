@@ -16,13 +16,11 @@
 	#include <string.h>
 	#include <inttypes.h>
 	#include <limits.h>
-
-	#if __X86_64__
-	#define ALIGN(x) (((((x) - 1) >> 4) << 4) + 16)
+	#if __x86_64__ || __ppc64__
+		#define ALIGN(x) (((((x) - 1) >> 4) << 4) + 16)
 	#else
-	#define ALIGN(x) (((((x) - 1) >> 3) << 3) + 8)
+		#define ALIGN(x) (((((x) - 1) >> 3) << 3) + 8)
 	#endif
-
 	#define PAGE_SIZE sysconf(_SC_PAGESIZE)
 
 typedef struct		info_s
