@@ -5,7 +5,7 @@
 ** prep_structs
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 info_t		*init_struct_info(size_t _size, size_t _free)
 {

@@ -26,11 +26,7 @@ SRCS2		= tests/prep_structs_tests.c \
 		  tests/tests-best_fit.c \
 		  tests/tests-split_block.c \
 		  tests/tests-increase_heap.c \
-		  list.c \
-		  malloc.c \
-		  free.c \
-		  realloc.c \
-	          calloc.c
+		  $(SRCS)
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -45,7 +41,7 @@ $(NAME):	$(OBJS)
 
 
 tests_run:	$(OBJS2)
-		@$(CC) $(SRCS2) -o $(NAME2) --coverage -lcriterion
+		@$(CC) -Iinclude $(SRCS2) -o $(NAME2) --coverage -lcriterion
 		./tests_malloc
 
 clean:

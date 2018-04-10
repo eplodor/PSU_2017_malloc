@@ -5,7 +5,7 @@
 ** increase_heap
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 Test(increase_heap, first_call)
 {

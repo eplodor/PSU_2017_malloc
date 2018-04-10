@@ -5,7 +5,7 @@
 ** test-add_elem_after
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 Test(add_after, empty_linked_list)
 {

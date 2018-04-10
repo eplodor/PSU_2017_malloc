@@ -5,7 +5,7 @@
 ** split_block
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 Test(split_block, non_existent_block)
 {

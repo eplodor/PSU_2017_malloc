@@ -5,7 +5,7 @@
 ** tests-remove_node
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 
 Test(remove_node, empty_linked_list)

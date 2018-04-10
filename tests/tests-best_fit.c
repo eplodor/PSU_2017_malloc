@@ -5,7 +5,7 @@
 ** best_fit
 */
 
-#include "../malloc.h"
+#include "malloc.h"
 
 Test(best_fit, empty_list)
 {
